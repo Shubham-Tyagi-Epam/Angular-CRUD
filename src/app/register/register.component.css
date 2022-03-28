@@ -1,0 +1,32 @@
+
+.about-us-card{
+    border: none;
+    text-align: justify;
+    border: 5px solid #7F1D1D;
+    /* background-color: #3f0d12; */
+    margin-top: 5%;
+    width:80%;
+    /* background-color: #3f0d12; */
+
+}
+
+.team-individual-image{
+    width: 22%;
+    min-width: 200px;
+    max-width: 400px;
+    cursor: pointer;
+}
+
+.bg-our-team{
+    background: url('../../assets/Images/productbg.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.login-bg{
+    background-image: url('../../assets/Images/loginbg.jpg');
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

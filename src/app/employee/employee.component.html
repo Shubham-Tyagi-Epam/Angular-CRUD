@@ -1,0 +1,125 @@
+<div class=" product-app-body d-flex flex-column justify-content-center align-items-center">
+    <div class="w-75">
+       <div class="container-fluid"> 
+         <div class=" filters row bg-dark p-3 text-center">
+             <div class="col">
+                 <input class="form-control w-100 fs-5" type="text" placeholder="Employee Id" #eid>
+             </div>
+             <div class="col">
+                 <input class="form-control w-100 fs-5" type="text" placeholder="Employee Name" #ename>
+             </div>
+             <div class="col">
+                 <button class="btn w-75 fs-5 bg-secondary" (click)="filter(eid.value,ename.value)"> Filter</button>
+             </div>
+             <div class="col">
+                 <button class="btn bg-secondary w-75 fs-5" (click)="getAllEmployeesFromEmployeeService()">Get Employees</button>
+             </div>
+             <div class="col">
+               <button class="btn bg-secondary w-75 fs-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Add Employee</button>
+             </div>
+         </div>
+     </div>
+       <table class="table table-striped align-middle text-center table-hover">
+         <thead class="bg-dark text-white">
+             <th class="p-3 fs-5">Employee Id</th>
+             <th class="p-3 fs-5">Employee Name</th>
+             <th class="p-3 fs-5">Employee location</th>
+             <th class="p-3 fs-5">Employee age</th>
+             <th class="p-3 fs-5">Employee designation</th>
+             <th class="p-3 fs-5">Actions</th>
+         </thead>
+         <tbody class="bg-light">
+           <tr *ngFor="let empObj of employeeObjArrayDup">
+               <td>{{empObj.id}}</td>
+               <td>{{empObj.name}}</td>
+               <td>{{empObj.location}}</td>
+               <td>{{empObj.email}}</td>
+               <td>{{empObj.designation}}</td>
+               <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="setCurrentlyEditing(empObj.id,empObj.name,empObj.location,empObj.email,empObj.designation)">Edit</button><button class="m-2 btn btn-danger" (click)="remove(empObj.id)">Remove</button></td>
+           </tr>
+         </tbody>
+         </table>
+     </div>
+     <!-- Modal -->
+     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen ">
+           <div class="modal-content modal-bg">
+               <div class="modal-header" style="border-bottom: none;">
+                   <h1 class="modal-title text-white mx-auto" id="staticBackdropLabel">Edit Employee Details</h1>
+               </div>
+               <div class="modal-body d-flex flex-row align-items-center">
+                   <form class="mx-auto edit-form-bg p-5 w-75 text-white fs-5 rounded">
+                       <div class="form-group">
+                           Employee ID : 
+                           <input class="form-control form-input fs-5" type="text"  value={{currentlyEditingId}} disabled #id>
+                       </div>
+                       <div class="form-group mt-3">
+                           Employee Name : 
+                           <input class="form-control form-input fs-5" type="text" value={{currentlyEditingName}} #name>
+                       </div>
+                       <div class="form-group mt-3">
+                           Employee Location : 
+                           <input class="form-control form-input fs-5" type="text" value={{currentlyEditingLocation}} #loc>
+                       </div>
+                       <div class="form-group mt-3">
+                           Employee Email : 
+                           <input class="form-control form-input fs-5" type="text" value={{currentlyEditingEmail}} #email>
+                       </div>
+                       <div class="form-group mt-3">
+                           Employee Designation : 
+                           <input class="form-control form-input fs-5"  type="text" value={{currentlyEditingDesignation}} #desig>
+                       </div>
+                       
+                   </form>
+               </div>
+               <div class="modal-footer d-flex flex-row justify-content-center" style="border-top: none;">
+                   <button type="button" class="btn btn-danger fs-4" data-bs-dismiss="modal" (click)="edit(name.value,loc.value,email.value,desig.value)">Confirm edit</button>
+                   <button type="button" class="btn btn-warning fs-4" data-bs-dismiss="modal">Cancel</button>
+               </div>
+           </div>
+       </div>
+   
+   </div>
+   <!-- Modal -->
+     <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen ">
+           <div class="modal-content modal-bg">
+               <div class="modal-header" style="border-bottom: none;">
+                   <h1 class="modal-title text-white mx-auto" id="staticBackdropLabel2">Add Employee</h1>
+               </div>
+               <div class="modal-body">
+                   <form class="mx-auto edit-form-bg p-5 w-75 text-white fs-5 rounded">
+                       <div class="form-group">
+                           Employee ID : 
+                           <input class="form-control form-input fs-5" type="text" #id1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                           Employee Name : 
+                           <input class="form-control form-input fs-5" type="text" #name1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                           Location : 
+                           <input class="form-control form-input fs-5" type="text" #loc1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                           Email : 
+                           <input class="form-control form-input fs-5" type="text" #email1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                           Designation : 
+                           <input class="form-control form-input fs-5" type="text" #desig1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                        Password : 
+                        <input class="form-control form-input fs-5" type="text" #pwd1 required>
+                    </div>
+                   </form>
+               </div>
+               <div class="modal-footer d-flex flex-row justify-content-center" style="border-top: none;">
+                   <button type="button" class="btn btn-danger fs-4" data-bs-dismiss="modal" (click)="add(id1.value,name1.value,loc1.value,email1.value,desig1.value,pwd1.value)">Confirm Add</button>
+                   <button type="button" class="btn btn-warning fs-4" data-bs-dismiss="modal">Cancel</button>
+               </div>
+           </div>
+       </div>
+   </div>
+   </div>

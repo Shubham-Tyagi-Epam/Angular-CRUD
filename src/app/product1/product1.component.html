@@ -1,0 +1,120 @@
+<div class=" product-app-body d-flex flex-column justify-content-center align-items-center">
+    <div class="w-75">
+       <div class="container-fluid"> 
+         <div class=" filters row bg-dark p-3 text-center">
+             <div class="col">
+                 <input class="form-control w-100 fs-5" type="text" placeholder="Product Id" #pid>
+             </div>
+             <div class="col">
+                 <input class="form-control w-100 fs-5" type="text" placeholder="Product Name" #pname>
+             </div>
+             <div class="col">
+                 <button class="btn w-75 fs-5 bg-secondary" (click)="filter(pid.value,pname.value)"> Filter</button>
+             </div>
+             <div class="col">
+                 <button class="btn bg-secondary w-75 fs-5" (click)="getAllProductsFromProductService()">Get Products</button>
+             </div>
+             <div class="col">
+               <button class="btn bg-secondary w-75 fs-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Add Product</button>
+             </div>
+         </div>
+     </div>
+       <table class="table table-striped align-middle text-center table-hover">
+         <thead class="bg-dark text-white">
+             <th class="p-3 fs-5">Product Id</th>
+             <th class="p-3 fs-5">Product Name</th>
+             <th class="p-3 fs-5">Release Date Age(in years)</th>
+             <th class="p-3 fs-5">Product Description</th>
+             <th class="p-3 fs-5">Product cost</th>
+             <th class="p-3 fs-5">Actions</th>
+         </thead>
+         <tbody class="bg-light">
+           <tr *ngFor="let proObj of productObjArrayDup">
+               <td>{{proObj.id}}</td>
+               <td>{{proObj.name}}</td>
+               <td>{{proObj.releaseTimeInYears}}</td>
+               <td>{{proObj.description}}</td>
+               <td>{{proObj.cost}}</td>
+               <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="setCurrentlyEditing(proObj.id,proObj.name,proObj.releaseTimeInYears,proObj.description,proObj.cost)">Edit</button><button class="m-2 btn btn-danger" (click)="remove(proObj.id)">Remove</button></td>
+           </tr>
+         </tbody>
+         </table>
+     </div>
+     <!-- Modal -->
+     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen ">
+           <div class="modal-content modal-bg">
+               <div class="modal-header" style="border-bottom: none;">
+                   <h1 class="modal-title text-white mx-auto" id="staticBackdropLabel">Edit Product Details</h1>
+               </div>
+               <div class="modal-body d-flex flex-row align-items-center">
+                   <form class="mx-auto edit-form-bg p-5 w-75 text-white fs-5 rounded">
+                       <div class="form-group">
+                           Product ID : 
+                           <input class="form-control form-input fs-5" type="text"  value={{currentlyEditingId}} disabled #id>
+                       </div>
+                       <div class="form-group mt-3">
+                           Product Name : 
+                           <input class="form-control form-input fs-5" type="text" (blur)="checkProductName(name.value)" value={{currentlyEditingName}} #name>
+                       </div>
+                       <div class="form-group mt-3">
+                           Product Release age (In Years) : 
+                           <input class="form-control form-input fs-5" type="number" (blur)="checkProductRTY(rty.value)" value={{currentlyEditingRTY}} #rty>
+                       </div>
+                       <div class="form-group mt-3">
+                           Product Description : 
+                           <input class="form-control form-input fs-5" (blur)="checkProductDesc(desc.value)" type="text" value={{currentlyEditingDesc}} #desc>
+                       </div>
+                       <div class="form-group mt-3">
+                           Product Cost (Rs) : 
+                           <input class="form-control form-input fs-5" (blur)="checkProductCost(cost.value)" type="number" value={{currentlyEditingCost}} #cost>
+                       </div>
+                   </form>
+               </div>
+               <div class="modal-footer d-flex flex-row justify-content-center" style="border-top: none;">
+                   <button type="button" class="btn btn-danger fs-4" data-bs-dismiss="modal" (click)="edit(name.value,rty.value,desc.value,cost.value)">Confirm edit</button>
+                   <button type="button" class="btn btn-warning fs-4" data-bs-dismiss="modal">Cancel</button>
+               </div>
+           </div>
+       </div>
+   
+   </div>
+   <!-- Modal -->
+     <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen ">
+           <div class="modal-content modal-bg">
+               <div class="modal-header" style="border-bottom: none;">
+                   <h1 class="modal-title text-white mx-auto" id="staticBackdropLabel2">Add Product</h1>
+               </div>
+               <div class="modal-body">
+                   <form class="mx-auto edit-form-bg p-5 w-75 text-white fs-5 rounded">
+                       <div class="form-group">
+                           Product ID : 
+                           <input class="form-control form-input fs-5" (blur)="checkProductId(id1.value)" type="text" #id1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                           Product Name : 
+                           <input class="form-control form-input fs-5" (blur)="checkProductName(name1.value)" type="text" #name1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                           Product Release Time (In Years) : 
+                           <input class="form-control form-input fs-5" type="number" (blur)="checkProductRTY(rty1.value)" #rty1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                           Product Desc : 
+                           <input class="form-control form-input fs-5" (blur)="checkProductDesc(desc1.value)" type="text" #desc1 required>
+                       </div>
+                       <div class="form-group mt-3">
+                           Product cost : 
+                           <input class="form-control form-input fs-5" (blur)="checkProductCost(cost1.value)" type="number" #cost1 required>
+                       </div>
+                   </form>
+               </div>
+               <div class="modal-footer d-flex flex-row justify-content-center" style="border-top: none;">
+                   <button type="button" class="btn btn-danger fs-4" data-bs-dismiss="modal" (click)="add(id1.value,name1.value,rty1.value,desc1.value,cost1.value)">Confirm Add</button>
+                   <button type="button" class="btn btn-warning fs-4" data-bs-dismiss="modal">Cancel</button>
+               </div>
+           </div>
+       </div>
+   </div>
+   </div>

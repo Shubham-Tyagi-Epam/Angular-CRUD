@@ -1,0 +1,36 @@
+{
+  "employees": [
+    {
+      "id": "Ramesh",
+      "name": "Ram",
+      "location": "Delhi",
+      "email": "ramesh@gmail.com",
+      "designation": "Assistant Software Engineer",
+      "pwd": ""
+    },
+    {
+      "id": "Gyanesh",
+      "name": "Gyanesh Sharma",
+      "location": "Delhi",
+      "email": "gyanesh@gmail.com",
+      "designation": "Manager",
+      "pwd": "admin"
+    },
+    {
+      "id": "Tapesh",
+      "name": "Tapesh",
+      "email": "tapesh@gmail.com",
+      "pwd": "admin",
+      "location": "Delhi",
+      "designation": "Lead Software Engineer"
+    },
+    {
+      "id": "Aman",
+      "name": "Aman",
+      "location": "Kanpur",
+      "email": "aman@gmail.com",
+      "designation": "Software Architect",
+      "pwd": "admin"
+    }
+  ]
+}

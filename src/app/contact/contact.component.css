@@ -1,0 +1,16 @@
+.card-shadow{
+    
+    box-shadow: rgba(153, 27, 27, 0.4) 0px -5px, rgba(153, 27, 27, 0.3) 0px -10px, rgba(153, 27, 27, 0.2) 0px -15px, rgba(153, 27, 27, 0.1) 0px -20px, #991b1b0d 0px -25px;
+    
+}
+.card-shadow-between{
+   
+    box-shadow: rgba(220, 38, 38, 0.4) 0px -5px, rgba(220, 38, 38, 0.3) 0px -10px, rgba(220, 38, 38, 0.2) 0px -15px, rgba(220, 38, 38, 0.1) 0px -20px, #991b1b0d 0px -25px
+}
+.card-shadow1{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.button-white:hover{
+    color: white;
+}

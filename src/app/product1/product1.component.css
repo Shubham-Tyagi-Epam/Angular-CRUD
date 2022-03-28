@@ -1,0 +1,33 @@
+.form-bg{
+    background-image: linear-gradient(to right, black,black 30% , transparent),url('../../assets/Images/oasis.jfif');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.form-input{
+    background: transparent;
+    color: white;
+}
+.modal-bg{
+    background-image:url('../../assets/Images/office.jfif');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.edit-form-bg{
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.product-app-body{
+    background: url('../../assets/Images/productbg.jpg');
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.filters{
+    border-bottom: 1px solid #f87171;    
+}
+

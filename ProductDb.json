@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": "Ph211",
+      "name": "Samsung Z12",
+      "releaseTimeInYears": 1,
+      "cost": 20000,
+      "description": "Google android phone with 4Db ram"
+    },
+    {
+      "id": "TV21",
+      "name": "Sony X12",
+      "releaseTimeInYears": 2,
+      "cost": 65000,
+      "description": "4K Android TV with triluminous display"
+    },
+    {
+      "id": "LAP23",
+      "name": "SonyVaio23",
+      "releaseTimeInYears": 2,
+      "cost": 25000,
+      "description": "Laptop with 4GB ram"
+    }
+  ]
+}
